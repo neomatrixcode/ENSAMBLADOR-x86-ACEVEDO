@@ -1,0 +1,46 @@
+
+Desarrollador Blockchain (33x de crecimiento)
+
+Ingeniero de Aprendizaje Automático (12x de crecimiento)
+
+Ejecutiva de ventas de aplicaciones (8x de crecimiento)
+
+Especialista en Aprendizaje Automático (6x de crecimiento)
+
+Representante médico profesional (6x de crecimiento)
+
+Consultor de relaciones (crecimiento 5.5x)
+
+Especialista en ciencia de datos (crecimiento 5x)
+
+Personal de aseguramiento (5x de crecimiento)
+
+Representante de Desarrollo de Ventas (crecimiento 4x)
+
+Consultor de soporte empresarial (crecimiento 4x)
+
+-------------------------------
+
+Añadir a mis #AugmentedReality habilidades. Cosas que tengo trabajando: escaneo 3D con cámaras estéreo, detección de objetos con red neuronal (bien es ResNet pero YOLO está llegando). Progresando en el rastreo interno. Escanear la fusión en el mapa de la habitación está llegando a lo largo, pero bastante áspero todavía.
+
+
+------------------------------------------------------------------------
+
+...
+cmp eax, 5 ; compara el valor de eax con 5
+
+jne bloque ; si la bandera cero es igual al valor 0 significa que ambos
+           ; numeros NO son  iguales (eax!=5) y se realiza un salto a la etiqueta
+           ; bloque, de lo contrario (eax==5) no se realiza ningún salto
+           ; y se ejecuta la siguiente linea en este caso la ocho
+mov ebx, 1 ; se iguala el valor de ebx con 1 (ebx = 1)
+bloque:
+...
+
+
+
+-----------------------------------------------------------------------
+
+ docker run --rm -it -v C:\Users\ito\Desktop\prueba:/code codeneomatrix/nasm sh
+nasm -f elf sumaresta.asm
+ld -m elf_i386 -s -o sumaresta sumaresta.o

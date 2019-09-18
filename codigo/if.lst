@@ -1,0 +1,73 @@
+     1                                  segment .data
+     2 00000000 0A0D456C2076616C6F-     	textoebx db  0xA,0xD,"El valor de ebx es: "
+     2 00000009 722064652065627820-
+     2 00000012 65733A20           
+     3                                  	lentextoebx equ $- textoebx
+     4 00000016 0A0D                    	saltodelinea db  0xA,0xD
+     5                                  	lensaltodelinea equ $- saltodelinea
+     6                                  
+     7                                  segment .bss
+     8 00000000 <res 00000001>          	valorebx resb 1
+     9                                  
+    10                                  section  .text
+    11                                  	global _start
+    12                                  _start:
+    13                                  
+    14 00000000 B005                    	mov al, 5 ; guardamos el valor cinco en pantalla
+    15 00000002 0430                    	add al, 48 ; el cual estableceremos como el valor
+    16 00000004 A2[00000000]            	mov [valorebx], al ; inicial del registro ebx
+    17                                  
+    18 00000009 B804000000              	mov eax, 4
+    19 0000000E BB01000000              	mov ebx, 1
+    20 00000013 B9[00000000]            	mov ecx, textoebx
+    21 00000018 BA16000000              	mov edx, lentextoebx
+    22 0000001D CD80                    	int 0x80
+    23                                  
+    24 0000001F B804000000              	mov eax, 4
+    25 00000024 BB01000000              	mov ebx, 1
+    26 00000029 B9[00000000]            	mov ecx, valorebx
+    27 0000002E BA01000000              	mov edx, 1
+    28 00000033 CD80                    	int 0x80
+    29                                  
+    30 00000035 B804000000              	mov eax, 4
+    31 0000003A BB01000000              	mov ebx, 1
+    32 0000003F B9[16000000]            	mov ecx, saltodelinea
+    33 00000044 BA02000000              	mov edx, lensaltodelinea
+    34 00000049 CD80                    	int 0x80
+    35                                  
+    36 0000004B 8B1D[00000000]          	mov ebx,[valorebx]; recuperamos el valor almacenado en la memoria
+    37 00000051 B805000000              	mov eax, 5 ; establecemos el valor de eax a cinco
+    38 00000056 83F805                  	cmp eax, 5 ; compara el valor de eax con cinco
+    39                                  
+    40 00000059 7551                    	jne salir ; si la bandera cero almacena un cero, eso significa
+    41                                             ; que ambos numeros NO son iguales (eax!=5) y se realiza
+    42                                             ; un salto a la etiqueta salir, de lo contrario (eax==5)
+    43                                             ; no se realiza ningún salto y se ejecutan las siguientes
+    44 0000005B BB01000000              	mov ebx, 1; lineas donde se iguala el valor de ebx con 1 (ebx = 1)
+    45                                  
+    46 00000060 89D8                    	mov eax, ebx
+    47 00000062 83C030                  	add eax, 48
+    48 00000065 A3[00000000]            	mov [valorebx], eax
+    49                                  
+    50 0000006A B804000000              	mov eax, 4
+    51 0000006F BB01000000              	mov ebx, 1
+    52 00000074 B9[00000000]            	mov ecx, textoebx
+    53 00000079 BA16000000              	mov edx, lentextoebx
+    54 0000007E CD80                    	int 0x80
+    55                                  
+    56 00000080 B804000000              	mov eax, 4
+    57 00000085 BB01000000              	mov ebx, 1
+    58 0000008A B9[00000000]            	mov ecx, valorebx
+    59 0000008F BA01000000              	mov edx, 1
+    60 00000094 CD80                    	int 0x80
+    61                                  
+    62 00000096 B804000000              	mov eax, 4
+    63 0000009B BB01000000              	mov ebx, 1
+    64 000000A0 B9[16000000]            	mov ecx, saltodelinea
+    65 000000A5 BA02000000              	mov edx, lensaltodelinea
+    66 000000AA CD80                    	int 0x80
+    67                                  
+    68                                  salir:
+    69 000000AC B801000000              	mov eax, 1
+    70 000000B1 BB00000000              	mov ebx, 0
+    71 000000B6 CD80                    	int 0x80
